@@ -2,7 +2,6 @@ import java.util.Random;
 import java.util.Scanner;
 
 /*
-Second Task:
 Third Task: make one sorted array of two sorted, without simply merging them and sorting*/
 public class Main {
     public static void main(String[] args) {
@@ -17,6 +16,7 @@ public class Main {
             chosenTask = inputInteger(in);
             switch (chosenTask){
                 case 1:
+                    performFirstTask(in);
                     break;
                 case 2:
                     performSecondTask(in);
@@ -30,6 +30,15 @@ public class Main {
             }
 
         }while(isContinue);
+    }
+
+    public static void performFirstTask(Scanner in){
+        System.out.println("Input size of month:");
+        int monthSize = inputNumberInCertainRange(in, 28, 31);
+        int[] monthArray = new int[monthSize];
+        fillArrayManually(monthArray, in, -90, 57);
+        int arithmeticMean = findArithmeticMean(monthArray, Integer.MAX_VALUE);
+        System.out.println("Monthly average temperature:" + arithmeticMean);
     }
 
     public static void performThirdTask(Scanner in){
@@ -115,7 +124,7 @@ public class Main {
         System.out.println("Input size of the array with grades(in range [2..100]):");
         int arrayLength = inputNumberInCertainRange(in, 2,100);
         int[] gradesArray = new int[arrayLength];
-        fillArrayManually(gradesArray, in);
+        fillArrayManually(gradesArray, in, 0, 10);
         bubbleSort(gradesArray);
         System.out.print("Initial array:");
         outputArray(gradesArray);
@@ -128,10 +137,10 @@ public class Main {
         }
     }
 
-    public static void fillArrayManually(int[] gradesArray, Scanner in){
+    public static void fillArrayManually(int[] gradesArray, Scanner in, int minValue, int maxValue){
         for (int i = 0; i < gradesArray.length; i++){
             System.out.printf("Input A[%d]:", i);
-            gradesArray[i] = inputNumberInCertainRange(in, 0, 10);
+            gradesArray[i] = inputNumberInCertainRange(in, minValue, maxValue);
         }
 
     }
